@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,12 +18,10 @@
         android:layout_width="match_parent"
         android:layout_weight="1"/>
 
-    <Button
-        android:text="Button"
+
+    <qelit.magnit_test.ProgressButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn1"
-        android:layout_gravity="center_vertical"
-        android:layout_marginRight="10dp"
-        android:background="@android:color/transparent" />
+        android:id="@+id/progress_button"
+        android:text="button" />
 </LinearLayout>

@@ -44,6 +44,8 @@ public class MyAdapter extends ArrayAdapter<Integer> {
         View rowView = inflater.inflate(R.layout.line, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.tv1);
         textView.setText(String.valueOf(numbers[position]));
+        ProgressButton button = (ProgressButton) rowView.findViewById(R.id.progress_button);
+        button.setRatio(0.3f);
         return rowView;
     }
 }
