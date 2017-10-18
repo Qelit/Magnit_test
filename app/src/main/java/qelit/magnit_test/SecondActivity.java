@@ -24,10 +24,13 @@ public class SecondActivity extends AppCompatActivity {
 
         //определение позиции из первого активити
         int position = getIntent().getExtras().getInt("pos");
+        float ratio = getIntent().getExtras().getFloat("rat");
         actionBar.setTitle("Row №" + position);
 
         TextView tv2 = (TextView) findViewById(R.id.tv2);
         tv2.setText(String.valueOf(position));
+        ProgressButton button = (ProgressButton) findViewById(R.id.progress_button2);
+        button.setRatio(ratio);
     }
 
     @Override

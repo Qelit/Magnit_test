@@ -5,19 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by Qelit on 10.10.2017.
+ * Created by Qelit on 18.10.2017.
  */
 
-public class MyAdapter extends ArrayAdapter<Integer> {
+public class SecAdapter extends ArrayAdapter<Integer> {
     private Context context;
-    private Integer[] numbers;
-    private float[] ratio;
+    private ArrayList<Integer> numbers;
+    private List<Float> ratio;
 
-    public MyAdapter(Context context, Integer[] numbers, float[] ratio){
+    public SecAdapter(Context context, ArrayList<Integer> numbers, List<Float> ratio){
         super(context, R.layout.line, numbers);
         this.context = context;
         this.numbers = numbers;
@@ -27,12 +29,12 @@ public class MyAdapter extends ArrayAdapter<Integer> {
 
     @Override
     public int getCount() {
-        return numbers.length;
+        return numbers.size();
     }
 
     @Override
     public Integer getItem(int position) {
-        return numbers[position];
+        return numbers.get(position);
     }
 
     @Override
@@ -45,9 +47,9 @@ public class MyAdapter extends ArrayAdapter<Integer> {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.line, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.tv1);
-        textView.setText(String.valueOf(numbers[position]));
+        textView.setText(String.valueOf(numbers.get(position)));
         ProgressButton button = (ProgressButton) rowView.findViewById(R.id.progress_button);
-        button.setRatio(ratio[position]);
+        button.setRatio(ratio.get(position));
         return rowView;
     }
 }
