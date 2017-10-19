@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_third"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="qelit.magnit_test.ThirdActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="30dp"
+        android:background="?attr/colorPrimary"
+        android:id="@+id/toolbar" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/linear1"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:text="ROW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/tv3"
+            android:textSize="10sp"
+            android:layout_marginLeft="10dp" />
+
+        <EditText
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/et1"
+            android:textSize="10sp"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear1"
+        android:id="@+id/linear2">
+
+        <TextView
+            android:text="% (0.1)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/tv4"
+            android:textSize="10sp"
+            android:layout_marginLeft="10dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/et2"
+            android:textSize="10sp"
+            android:layout_marginRight="10dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn3"
+        android:layout_below="@+id/linear2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:minHeight="35dp"
+        android:minWidth="80dip" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvMain1"
+        android:headerDividersEnabled="false"
+        android:layout_below="@+id/btn3"
+        />
+
+</RelativeLayout>

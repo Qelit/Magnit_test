@@ -1,6 +1,7 @@
 package qelit.magnit_test;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class ThirdActivity extends AppCompatActivity {
     ListView lvMain;
     ArrayList<Integer> numb;
     List<Float> rat;
+    public static final String PREFS_NAME = "MyPrefsFile";
 
 
     @Override
@@ -28,6 +30,7 @@ public class ThirdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_third);
 
+        //если массивы не созданы, создать
         if (rat == null|| numb == null) {
             numb = new ArrayList<Integer>();
             rat = new ArrayList<Float>();
@@ -43,15 +46,23 @@ public class ThirdActivity extends AppCompatActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(R.string.settings);
 
+        //получение 2-х массивов перед закрытием
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        int size=settings.getInt("MyArraySize", 0);
+        for(int i=0; i < size; i++) {
+            numb.add(settings.getInt("saveModeInt" + i, 0));
+            rat.add(settings.getFloat("saveModeFloat" + i, 0));
+        }
+        //адаптер
         lvMain = (ListView) findViewById(R.id.lvMain1);
         SecAdapter adapter = new SecAdapter(this, numb, rat);
         lvMain.setAdapter(adapter);
-
 
         ratio = getIntent().getExtras().getFloatArray("rat");
 
         final EditText et1 = (EditText) findViewById(R.id.et1);
         final EditText et2 = (EditText) findViewById(R.id.et2);
+        //обработчик нажатия на кнопку
         Button button = (Button) findViewById(R.id.btn3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,10 +91,10 @@ public class ThirdActivity extends AppCompatActivity {
     }
 
     public void finish(){
+        //при закрытии приложения отправляем массив ratio
         Intent intent = new Intent();
         intent.putExtra("rat", ratio);
         setResult(RESULT_OK, intent);
-        System.out.println("Вызвался");
         super.finish();
     }
 
@@ -96,5 +107,20 @@ public class ThirdActivity extends AppCompatActivity {
             finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //при закрытии активити, сохраняем массивы
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("MyArraySize", numb.size());
+        for (int i = 0; i < numb.size(); i++) {
+            editor.putInt("saveModeInt" + i, numb.get(i));
+            editor.putFloat("saveModeFloat" + i, rat.get(i));
+        }
+
+        editor.commit();
     }
 }
