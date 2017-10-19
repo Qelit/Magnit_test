@@ -36,12 +36,10 @@ public class ProgressButton extends AppCompatButton {
     }
 
     public void setRatio (float ratio){
-        mRatio = ratio;
-        invalidate();
-    }
-
-    public void setColor (int color){
-        mColor = color;
+        if (ratio > 1)
+            mRatio = 1f;
+        else
+            mRatio = ratio;
         invalidate();
     }
 

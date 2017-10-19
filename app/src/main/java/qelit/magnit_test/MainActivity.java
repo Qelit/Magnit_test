@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         lvMain = (ListView) findViewById(R.id.lvMain);
         //обработчик нажатия на ListView
         lvMain.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,6 +104,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         editor.commit();
-
     }
 }
